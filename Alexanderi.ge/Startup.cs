@@ -1,3 +1,4 @@
+using Alexanderi.ge.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -16,6 +17,11 @@ namespace Alexanderi.ge
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+     
+            services.AddMvc();
+            services.AddSingleton<ILeatherProductRepository, MockLeatherProductRepository>();
+  
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -30,11 +36,14 @@ namespace Alexanderi.ge
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapGet("/", async context =>
-                {
-                    await context.Response.WriteAsync("Hello World!");
-                });
+                endpoints.MapControllerRoute(
+                    name: "default",
+                    pattern: "{controller=Home}/{action=Index}/{id?}"
+                    );
+
+                endpoints.MapRazorPages();
             });
+
         }
     }
 }

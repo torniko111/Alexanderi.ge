@@ -6,7 +6,9 @@
 
   <ItemGroup>
     <Folder Include="Data\" />
-    <Folder Include="Models\" />
+    <Folder Include="View\Home\" />
+    <Folder Include="View\Shared\" />
+    <Folder Include="wwwroot\" />
   </ItemGroup>
 
 </Project>
